@@ -10,7 +10,7 @@ import {
 
 import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
 import { Redis } from "@upstash/redis";
-import { filterUserForClient } from "~/server/helpers/filterUserForClient.ts";
+import { filterUserForClient } from "~/server/helpers/filterUserForClient";
 import type { Post } from "@prisma/client";
 
 const addUserDataToPosts = async (posts: Post[]) => {
@@ -24,7 +24,7 @@ const addUserDataToPosts = async (posts: Post[]) => {
   return posts.map((post) => {
     const author = users.find((user) => user.id === post.authorId);
 
-    if (!author || !author.username)
+    if (!author?.username)
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",
         message: "Author for post not found",
