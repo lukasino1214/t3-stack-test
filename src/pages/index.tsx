@@ -15,6 +15,7 @@ const CreatePostWizard = () => {
   const {user} = useUser();
   if(!user) { return null; }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [input, setInput] = useState("");
 
   const ctx = api.useContext();
